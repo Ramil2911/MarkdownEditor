@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:text_editor.ViewModels;assembly=text_editor"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:text_editor.ViewModels"
+        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
+        xmlns:views="clr-namespace:text_editor.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="text_editor.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="text_editor">
+
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
+    
+<Grid Background="White" Width="Nan" Height="NaN" ColumnDefinitions="350,*,400" Name="MainGrid">
+    <views:HierarchyView Grid.Column="0" Name="ControlList"/>
+    <views:PreviewView Grid.Column="1" Background="White" />
+    <views:InspectorView Background="LightBlue" Grid.Column="2"/>
+</Grid>
+
+
+</Window>

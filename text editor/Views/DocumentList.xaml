@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:text_editor.ViewModels;assembly=text_editor"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:text_editor.ViewModels"
+        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
+        xmlns:controls="clr-namespace:text_editor.Controls"
+        xmlns:views="clr-namespace:text_editor.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="text_editor.Views.HierarchyView">
+
+    <Design.DataContext>
+        <viewModels:HierarchyViewModel/>
+    </Design.DataContext>
+    
+    
+    <Grid RowDefinitions="*,21" Name="Grid">
+    <ListBox Grid.Row="0" Height="NaN" Width="NaN" Name = "DocList" Items="{Binding Context.Pages[0].Elements}"
+             SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <views:DragDropPanel Width="342" ContextReference="{Binding .}">
+                    <TextBlock Text="{Binding Name}" Background="Transparent" Padding="3"/>
+                </views:DragDropPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    <Menu Grid.Row="1" Margin="1">
+        <MenuItem Name="ControlsMenu" Header="_Add" Items="{Binding MenuItems}"></MenuItem>
+    </Menu>
+</Grid>
+
+</UserControl>

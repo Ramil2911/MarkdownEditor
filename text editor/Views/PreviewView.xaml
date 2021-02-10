@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:text_editor.ViewModels;assembly=text_editor"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:text_editor.ViewModels"
+        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="text_editor.Views.PreviewView">
+
+    <Design.DataContext>
+        <viewModels:PreviewViewModel/>
+    </Design.DataContext>
+    
+    <webViewControl:WebView Name="WebView" Height="NaN" Width="NaN" Margin="0,5,0,5"/>
+
+</UserControl>
