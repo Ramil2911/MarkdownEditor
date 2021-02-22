@@ -14,7 +14,7 @@ namespace text_editor.Controls
         //Adds current IMarkdownable to the document;
         public void AddToPage()
         {
-            Locator.Current.GetService<Context>().Pages[0].Elements.Add((IMarkdownable)Activator.CreateInstance(this.GetType()));
+            Locator.Current.GetService<Context>().Pages[0].Elements.Add((Placeholder)Activator.CreateInstance(this.GetType()));
         }
     }
 }

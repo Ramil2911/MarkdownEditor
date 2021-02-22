@@ -15,6 +15,7 @@ using ReactiveUI.Fody.Helpers;
 using Splat;
 using text_editor.Controls;
 using text_editor.Models;
+using text_editor.Models.Document;
 
 namespace text_editor.ViewModels
 {
@@ -32,7 +33,24 @@ namespace text_editor.ViewModels
                 raw += item.ToMarkdown();
             }
             Html = Markdown.ToHtml(raw);
-            Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+
+            context.Pages[0].Elements
+                .ToObservableChangeSet()
+                .AutoRefresh()
+                .Throttle(TimeSpan.FromMilliseconds(100))
+                .Subscribe(x =>
+                {
+                    string raw = "";
+                    foreach (var item in context.Pages[0].Elements)
+                    {
+                        raw += item.ToMarkdown();
+                    }
+
+                    Html = Markdown.ToHtml(raw);
+                });
+
+
+            /*Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
                     handler => context.Pages[0].Elements.CollectionChanged += handler, 
                     handler => context.Pages[0].Elements.CollectionChanged -= handler)
                 .Throttle(TimeSpan.FromMilliseconds(100))
@@ -45,7 +63,7 @@ namespace text_editor.ViewModels
                     }
 
                     Html = Markdown.ToHtml(raw);
-                });
+                });*/
         }
     }
 }

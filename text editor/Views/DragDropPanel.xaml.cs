@@ -26,7 +26,7 @@ namespace text_editor.Views
         
         public DragDropPanel()
         {
-            var controller = (DragDropController)Splat.Locator.Current.GetService(typeof(DragDropController));
+            //var controller = (DragDropController)Splat.Locator.Current.GetService(typeof(DragDropController));
             
             InitializeComponent();
             //Doesnt work
@@ -77,7 +77,7 @@ namespace text_editor.Views
             if (listBox.Selection.SelectedIndexes.Any(index => ReferenceEquals(document[index], it.ContextReference))) return;
 
             var copy = document.ToList();
-            var selected = new List<IMarkdownable>();
+            var selected = new List<Placeholder>();
             
             foreach (var item in listBox.Selection.SelectedIndexes)
             {
@@ -85,7 +85,7 @@ namespace text_editor.Views
                 copy.Remove(document[item]);
             }
 
-            copy.InsertRange(document.IndexOf(it.ContextReference),  selected);
+            copy.InsertRange(document.IndexOf(it.ContextReference), selected);
             document.Clear();
             document.Add(copy);
         }

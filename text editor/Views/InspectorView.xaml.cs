@@ -1,5 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Reactive.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.LogicalTree;
@@ -20,16 +23,18 @@ namespace text_editor.Views
             DataContext = new InspectorViewModel();
             InitializeComponent();
 
+            
             var children = this.FindControl<StackPanel>("Panel").Children;
-            (DataContext as InspectorViewModel)
-                .WhenAnyValue(x => x.Elements)
+            Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+                handler => (DataContext as InspectorViewModel).Elements.CollectionChanged += handler, 
+                handler => (DataContext as InspectorViewModel).Elements.CollectionChanged -= handler)
                 .Subscribe(x =>
                 {
                     children.Clear();
-                    children.AddRange(x);
+                    children.AddRange((ObservableCollection<InspectorElementTemplate>)x.Sender);
                 });
-            
-            
+
+
             ViewReferences
                 .DocList
                 .FindControl<Grid>("Grid")

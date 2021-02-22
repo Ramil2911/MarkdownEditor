@@ -3,24 +3,18 @@ using System.Reactive;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Splat;
+using text_editor.Attributes;
 using text_editor.Models;
 
 namespace text_editor.Controls
 {
-    public class Text : ReactiveObject, IMarkdownable
+    public class Text : Placeholder
     {
-        public string Name => "TextBlock";
+        public override string Name => "TextBlock";
 
-        private string _text = "aaaaaaa";
+        [Reactive, InspectorEditable] public string TextStr { get; set; } = "aaaaaaa";
 
-        [Reactive]
-        public string TextStr
-        {
-            get => _text;
-            set => _text = value;
-        }
-        
-        public string ToMarkdown()
+        public override string ToMarkdown()
         {
             return TextStr+"<br/>";
         }

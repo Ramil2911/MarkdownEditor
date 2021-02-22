@@ -3,13 +3,10 @@ using ReactiveUI;
 
 namespace text_editor.Controls
 {
-    public class Placeholder : ReactiveObject, IMarkdownable
+    public abstract class Placeholder : ReactiveObject, IMarkdownable
     {
-        public string ToMarkdown()
-        {
-            return "";
-        }
+        public abstract string ToMarkdown();
 
-        public string Name { get; } = "Placeholder";
+        public abstract string Name { get; }
     }
 }

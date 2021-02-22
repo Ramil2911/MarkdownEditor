@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Linq;
 using System.Reactive.Linq;
+using DynamicData;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using text_editor.Attributes;
 using text_editor.Controls;
+using text_editor.Models;
 using text_editor.Views;
 
 namespace text_editor.ViewModels
 {
     public class InspectorViewModel : ViewModelBase
     {
-        public List<InspectorElementTemplate> Elements { get; set; } = new();
+        [Reactive] public ObservableCollection<InspectorElementTemplate> Elements { get; set; } = new();
 
         [Reactive] public IMarkdownable CurrentElement { get; set; }
         
@@ -27,6 +32,7 @@ namespace text_editor.ViewModels
                     if (x == null) return;
                     foreach (var propertyInfo in CurrentElement.GetType().GetProperties())
                     {
+                        if (propertyInfo.GetCustomAttributes(typeof(InspectorEditable), true).Length == 0) continue;
                         var elementTemplate = new InspectorElementTemplate();
                         elementTemplate.AddTextField(x, propertyInfo);
                         tempElements.Add(elementTemplate);
@@ -35,7 +41,7 @@ namespace text_editor.ViewModels
                     Elements.Clear();
                     Elements.AddRange(tempElements);
                     tempElements.Clear();
-                }, exception => {}); //TODO: Error handling
+                }, exception => { Debug.WriteLine("f");}); //TODO: Error handling
         }
     }
 }

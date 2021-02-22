@@ -11,7 +11,7 @@ using text_editor.Views;
 
 namespace text_editor.Models
 {
-    //Sigleton class
+    //Sigleton class, not used anymore
     public class DragDropController
     {
         //Target is item that is clicked by mouse, all calculations are relative to it
@@ -46,7 +46,7 @@ namespace text_editor.Models
             if (listBox.Selection.SelectedIndexes.Any(index => ReferenceEquals(document[index], it.ContextReference))) return;
 
             var copy = document.ToList();
-            var selected = new List<IMarkdownable>();
+            var selected = new List<Placeholder>();
             
             foreach (var item in listBox.Selection.SelectedIndexes)
             {
@@ -54,7 +54,7 @@ namespace text_editor.Models
                 copy.Remove(document[item]);
             }
 
-            copy.InsertRange(document.IndexOf(it.ContextReference),  selected);
+            copy.InsertRange(document.IndexOf(it.ContextReference), selected);
             document.Clear();
             document.Add(copy);
         }
