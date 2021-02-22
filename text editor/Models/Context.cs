@@ -24,7 +24,7 @@ namespace text_editor.Models
     {
         public class Page : ReactiveObject
         {
-            [Reactive] public ObservableCollection<Placeholder> Elements { get; set; } = new();
+            [Reactive] public ObservableCollection<Markdownable> Elements { get; set; } = new();
         }
     }
 }

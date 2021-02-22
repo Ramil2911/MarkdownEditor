@@ -46,7 +46,7 @@ namespace text_editor.Models
             if (listBox.Selection.SelectedIndexes.Any(index => ReferenceEquals(document[index], it.ContextReference))) return;
 
             var copy = document.ToList();
-            var selected = new List<Placeholder>();
+            var selected = new List<Markdownable>();
             
             foreach (var item in listBox.Selection.SelectedIndexes)
             {
