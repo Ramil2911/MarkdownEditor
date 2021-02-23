@@ -41,9 +41,16 @@ namespace text_editor.Views
                 .SelectionChanged
                 .Subscribe(x =>
                 {
-                    if (x.AddedItems[0] != null)
+                    try
                     {
-                        ((InspectorViewModel) DataContext).CurrentElement = (IMarkdownable) x.AddedItems[0];
+                        if (x.AddedItems.Count != 0) ;
+                        {
+                            ((InspectorViewModel) DataContext).CurrentElement = (IMarkdownable) x.AddedItems[0];
+                        }
+                    }
+                    catch
+                    {
+
                     }
                 });
             //Looks like it wont work

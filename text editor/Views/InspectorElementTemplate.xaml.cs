@@ -65,7 +65,7 @@ namespace text_editor.Views
                 Increment = 1,
                 Minimum = 1,
                 Maximum = 6,
-            };
+            }; //TODO: make it not only-header-compatible
 
             field
                 .WhenAnyValue(x => x.Value)
