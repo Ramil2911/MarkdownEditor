@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:text_editor.ViewModels"
-
+        xmlns:controls="clr-namespace:text_editor.Controls"
+        xmlns:views="clr-namespace:text_editor.Views"
+        xmlns:drawing="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="text_editor.Views.InspectorView">
+        x:Class="text_editor.Views.PreviewerContainer">
 
     <Design.DataContext>
-        <viewModels:InspectorViewModel/>
+        <viewModels:HierarchyViewModel/>
     </Design.DataContext>
     
-    <StackPanel Name="Panel" Width="NaN" Height="NaN" Orientation="Vertical"/>
-    
-    
+
 </UserControl>

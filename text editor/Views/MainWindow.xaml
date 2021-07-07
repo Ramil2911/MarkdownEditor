@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:text_editor.ViewModels"
-        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
         xmlns:views="clr-namespace:text_editor.Views"
+        xmlns:attributes="clr-namespace:text_editor.Internationalization.Attributes"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="text_editor.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -15,11 +15,38 @@
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
     
-<Grid Background="White" Width="Nan" Height="NaN" ColumnDefinitions="350,*,400" Name="MainGrid">
-    <views:HierarchyView Grid.Column="0" Name="ControlList"/>
-    <views:PreviewView Grid.Column="1" Background="White" />
-    <views:InspectorView Background="LightBlue" Grid.Column="2"/>
-</Grid>
+    <Window.Styles>
+        <Style Selector="Button.topbar /template/ ContentPresenter">
+            <Setter Property="CornerRadius" Value="4,4,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Window.Styles>
+    
+    <DockPanel Background="#404040" x:Name="Dock">
+        <DockPanel DockPanel.Dock="Top" Height="120" Background="#404040" LastChildFill="True" Margin="0,4,0,0">
+            <ItemsControl Items="{Binding Topbars}" DockPanel.Dock="Top" Height="20" x:Name="TopbarItems">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding SetActivePanel}" Background="{Binding Color}" Classes="topbar" Height="NaN" Width="80" Padding="6, 0, 6, 0" Margin="2,0,2,0" >
+                            <TextBlock Width="NaN" Height="NaN" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="White" Text="{Binding NameAttr.LocalizedString}"></TextBlock>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <UserControl Background="#484848" Content="{Binding ActivePanel}"/>
+        </DockPanel>
+        <Grid Background="#444444" Width="Nan" Height="NaN" ColumnDefinitions="*,1000,*" Name="MainGrid">
+            <Panel Grid.Column="0"/>
+            <views:PreviewView Background="#383838" Grid.Column="1"/>
+            <Panel Grid.Column="2"></Panel>
+        </Grid>
+    </DockPanel>
 
 
 </Window>

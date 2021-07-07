@@ -1,0 +1,3 @@
+[submodule "Avalonia.HtmlRenderer"]
+	path = Avalonia.HtmlRenderer
+	url = https://github.com/AvaloniaUI/Avalonia.HtmlRenderer.git

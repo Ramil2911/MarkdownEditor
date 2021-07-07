@@ -4,31 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:text_editor.ViewModels"
-        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
         xmlns:controls="clr-namespace:text_editor.Controls"
         xmlns:views="clr-namespace:text_editor.Views"
+        xmlns:drawing="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="text_editor.Views.HierarchyView">
+        x:Class="text_editor.Views.ElementsList">
 
     <Design.DataContext>
         <viewModels:HierarchyViewModel/>
     </Design.DataContext>
     
+    <UserControl.Styles>
+        <Style Selector="ListBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#404040"/>
+        </Style>
+    </UserControl.Styles>
     
-    <Grid RowDefinitions="*,21" Name="Grid">
-    <ListBox Grid.Row="0" Height="NaN" Width="NaN" Name = "DocList" Items="{Binding Context.Pages[0].Elements}"
+    <ListBox Height="NaN" Width="NaN" Name = "DocList" Items="{Binding Context.Pages[0].Elements}"
              SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <views:DragDropPanel Width="342" ContextReference="{Binding .}">
-                    <TextBlock Text="{Binding Name}" Background="Transparent" Padding="3"/>
+                <views:DragDropPanel ContextReference="{Binding .}">
+                    <TextBlock Foreground="White" Text="{Binding Name}" Background="Transparent" Padding="3"/>
                 </views:DragDropPanel>
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>
-    <Menu Grid.Row="1" Margin="1">
-        <MenuItem Name="ControlsMenu" Header="_Add" Items="{Binding MenuItems}"></MenuItem>
-    </Menu>
-</Grid>
 
 </UserControl>

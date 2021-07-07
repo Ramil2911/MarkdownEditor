@@ -20,10 +20,10 @@ using text_editor.ViewModels;
 
 namespace text_editor.Views
 {
-    public class HierarchyView : UserControl
+    public class ElementsList : UserControl
     {
 
-        public HierarchyView()
+        public ElementsList()
         {
             ViewReferences.DocList = this;
             DataContext = new HierarchyViewModel();

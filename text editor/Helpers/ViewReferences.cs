@@ -4,7 +4,7 @@ namespace text_editor.Helpers
 {
     public static class ViewReferences
     {
-        public static HierarchyView DocList;
+        public static ElementsList DocList;
         public static PreviewView PreviewView;
         public static InspectorView InspectorView;
     }

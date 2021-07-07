@@ -1,18 +1,14 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+<topbars:TopbarPanelBase xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:text_editor.ViewModels;assembly=text_editor"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:text_editor.ViewModels"
-
+        xmlns:topbars="clr-namespace:text_editor.Views.Topbars"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="text_editor.Views.InspectorView">
+        x:Class="text_editor.Views.Topbars.DebugTopbarView">
+        
+    
+        
 
-    <Design.DataContext>
-        <viewModels:InspectorViewModel/>
-    </Design.DataContext>
-    
-    <StackPanel Name="Panel" Width="NaN" Height="NaN" Orientation="Vertical"/>
-    
-    
-</UserControl>
+</topbars:TopbarPanelBase>

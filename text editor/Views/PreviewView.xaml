@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:text_editor.ViewModels"
-        xmlns:webViewControl="clr-namespace:WebViewControl;assembly=WebViewControl.Avalonia"
+        xmlns:views="clr-namespace:text_editor.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="text_editor.Views.PreviewView">
 
@@ -12,6 +12,21 @@
         <viewModels:PreviewViewModel/>
     </Design.DataContext>
     
-    <webViewControl:WebView Name="WebView" Height="NaN" Width="NaN" Margin="0,5,0,5"/>
+    <ItemsControl Items="{Binding Path=Elements }" DockPanel.Dock="Top"  x:Name="TopbarItems">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Vertical"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <views:PreviewerContainer MarkdownContext="{Binding }"/>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    
+    <!--<Grid Width="NaN" Height="NaN" ColumnDefinitions="*,840,*" Name="PreviewGrid">
+        
+    </Grid>-->
 
 </UserControl>

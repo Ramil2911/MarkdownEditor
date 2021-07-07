@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using WebViewControl;
+using text_editor.ViewModels;
 
 namespace text_editor.Views
 {
@@ -13,6 +13,7 @@ namespace text_editor.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            DataContext = new MainWindowViewModel();
         }
 
         private void InitializeComponent()
